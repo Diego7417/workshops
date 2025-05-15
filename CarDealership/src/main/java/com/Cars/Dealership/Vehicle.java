@@ -61,8 +61,8 @@ public class Vehicle {
         this.vehicleType = vehicleType;
     }
 
-    public String getColor() {
-        return color;
+    public String getColor(String color) {
+        return this.color;
     }
 
     public void setColor(String color) {
@@ -83,5 +83,19 @@ public class Vehicle {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "vin=" + vin +
+                ", year=" + year +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", vehicleType='" + vehicleType + '\'' +
+                ", color='" + color + '\'' +
+                ", odometer=" + odometer +
+                ", price=" + price +
+                '}';
     }
 }

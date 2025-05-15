@@ -1,14 +1,16 @@
 package com.Cars.Dealership;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 
 public class DealershipFileManager {
-    public Dealership getDealership(Dealership dealership){
+    public Dealership getDealership(String filePath){
         Dealership dealership = null;
 
         try {
-            FileReader fileReader = new FileReader("inventory.csv");
+            FileReader fileReader = new FileReader(filePath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String dealershipInfo =bufferedReader.readLine();
@@ -40,6 +42,7 @@ public class DealershipFileManager {
                     double price = Double.parseDouble(parts[7]);
 
                     Vehicle vehicle = new Vehicle(vin, year, make, model, vehicleType, color, odometer, price);
+                    assert dealership != null;
                     dealership.addVehicle(vehicle);
                 }
             }
@@ -49,5 +52,28 @@ public class DealershipFileManager {
             throw new RuntimeException(e);
         }
         return dealership;
+    }
+//    saving dealership
+    public void saveDealership(Dealership dealership){
+        try {
+            BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("inventory.csv"));
+//            writes dealership info (name, address, number)
+             bufferedWriter.write(dealership.getName() + "|" + dealership.getAddress() + "|" + dealership.getPhone());
+             bufferedWriter.newLine();
+
+             for (Vehicle vehicle: dealership.getInventory()){
+                 String color = "";
+                 String vehicleData = vehicle.getVin() + "|" + vehicle.getYear() + "|" + vehicle.getMake() + "|" +
+                         vehicle.getModel() + "|" + vehicle.getVehicleType() + "|" + vehicle.getColor(color) + "|" + vehicle.getOdometer() +
+                         "|" + vehicle.getPrice();
+                 bufferedWriter.write(vehicleData);
+                 bufferedWriter.newLine();
+
+             }
+             bufferedWriter.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
