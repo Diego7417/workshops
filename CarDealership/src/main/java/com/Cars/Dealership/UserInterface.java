@@ -8,6 +8,14 @@ public class UserInterface {
     private DealershipFileManager fileManager = new DealershipFileManager();
     static Scanner scanner = new Scanner(System.in);
 
+    public static final String RESET = "\u001B[0m";
+    public static final String GREEN = "\\u001B[32m";
+    public static final String BLUE = "\\u001B[34m";
+    public static final String BRIGHT_RED = "\u001B[91m";
+    public static final String PURPLE = "\u001B[35m";
+    public static final String BRIGHT_CYAN = "\u001B[96m";
+
+
     public void display(){
         init();
         while (true){
@@ -58,8 +66,8 @@ public class UserInterface {
     }
 
     private void displayMenu(){
-        System.out.println("\nWelcome to " + dealership.getName());
-        System.out.println("1. Find vehicles by price");
+        System.out.println(BRIGHT_CYAN + "\n===Welcome to " + dealership.getName() + RESET);
+        System.out.println(  "1. Find vehicles by price");
         System.out.println("2. Find vehicles by make and model");
         System.out.println("3. Find vehicles by year range");
         System.out.println("4. Find vehicles by color");
@@ -68,13 +76,13 @@ public class UserInterface {
         System.out.println("7. List ALL vehicles");
         System.out.println("8. Add a vehicle");
         System.out.println("9. Remove a vehicle");
-        System.out.println("0. Exit Application");
-        System.out.print("Select an option: ");
+        System.out.println("0. Exit Application" + RESET);
+        System.out.print(PURPLE + "Select an option: " + RESET);
     }
 
     private void displayVehicles(ArrayList<Vehicle>vehicles){
         if (vehicles == null || vehicles.isEmpty()){
-            System.out.println("Vehicle not found");
+            System.out.println(GREEN + "Vehicle not found" + RESET);
             return;
         }
         for (Vehicle vehicle : vehicles){
@@ -204,9 +212,9 @@ public class UserInterface {
         if (toRemove != null){
             dealership.removeVehicle(toRemove);
             fileManager.saveDealership(dealership);
-            System.out.println("Vehicle removed.");
+            System.out.println(GREEN + "Vehicle removed." + RESET);
         }else {
-            System.out.println("Vehicle not found");
+            System.out.println(BRIGHT_RED + "Vehicle not found" + RESET);
         }
     }
     private static void promptReturnToMainMenu(){

@@ -1,6 +1,14 @@
 package com.Cars.Dealership;
 
 public class Vehicle {
+
+    public static final String RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String CYAN = "\u001B[36m";
+    public static final String PURPLE = "\u001B[35m";
+
     private int vin;
     private int year;
     private String make;
@@ -87,15 +95,15 @@ public class Vehicle {
 
     @Override
     public String toString() {
-        return "Vehicle{" +
-                "vin=" + vin +
-                ", year=" + year +
-                ", make='" + make + '\'' +
-                ", model='" + model + '\'' +
-                ", vehicleType='" + vehicleType + '\'' +
-                ", color='" + color + '\'' +
-                ", odometer=" + odometer +
-                ", price=" + price +
-                '}';
+        return GREEN + "Vehicle{" + RESET +
+                CYAN +"vin=" + vin + RESET +
+                ", " + YELLOW + "year=" + year + RESET +
+                ", " + PURPLE + "make='" + make + '\'' + RESET +
+                ", " + PURPLE + "model='" + model + '\'' + RESET +
+                ", " + RED + "vehicleType='" + vehicleType + '\'' + RESET +
+                ", " + CYAN + "color='" + color + '\'' + RESET +
+                ", " + YELLOW + "odometer=" + odometer + RESET +
+                ", " + GREEN + "price=$" + price + RESET +
+                GREEN + '}' + RESET;
     }
 }
